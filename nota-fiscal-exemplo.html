@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Fiscal Exemplo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #000;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f9f9f9;
+        }
+
+        /* Estilize os campos como desejado */
+        .container div {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detalhes da Nota Fiscal</h1>
+        <div>
+            <h2>Data e Hora de Emissão:</h2>
+            <p id="dataHoraEmissao"></p>
+        </div>
+
+        <div>
+            <h2>Número da Nota:</h2>
+            <p id="numeroNota"></p>
+        </div>
+
+        <div>
+            <h2>Nome do Emitente:</h2>
+            <p id="emitenteNome"></p>
+        </div>
+
+        <div>
+            <h2>Nome do Destinatário:</h2>
+            <p id="destinatarioNome"></p>
+        </div>
+
+        <div>
+            <h2>Itens da Nota Fiscal:</h2>
+            <table>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário (R$)</th>
+                    <th>Total (R$)</th>
+                </tr>
+                <tr>
+                    <td id="descricaoItem1"></td>
+                    <td id="quantidadeItem1"></td>
+                    <td id="precoUnitarioItem1"></td>
+                    <td id="totalItem1"></td>
+                </tr>
+                
+            </table>
+        </div>
+
+        <div>
+            <h2>Informações Fiscais:</h2>
+            <p>CPF: <span id="cpf"></span></p>
+            <p>Cidade: <span id="cidade"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Função para obter os parâmetros da URL
+        function obterParametroDaURL(nome) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nome);
+        }
+
+        // Preencher os campos com os valores da URL
+        document.getElementById("dataHoraEmissao").textContent = obterParametroDaURL("dataHoraEmissao");
+        document.getElementById("numeroNota").textContent = obterParametroDaURL("numeroNota");
+        document.getElementById("emitenteNome").textContent = obterParametroDaURL("emitenteNome");
+        document.getElementById("destinatarioNome").textContent = obterParametroDaURL("destinatarioNome");
+        document.getElementById("descricaoItem1").textContent = obterParametroDaURL("descricaoItem1");
+        document.getElementById("quantidadeItem1").textContent = obterParametroDaURL("quantidadeItem1");
+        document.getElementById("precoUnitarioItem1").textContent = obterParametroDaURL("precoUnitarioItem1");
+        document.getElementById("totalItem1").textContent = obterParametroDaURL("totalItem1");
+        document.getElementById("cpf").textContent = obterParametroDaURL("cpf");
+        document.getElementById("cidade").textContent = obterParametroDaURL("cidade");
+    </script>
+</body>
+</html>

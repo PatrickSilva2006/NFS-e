@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emissão de Nota Fiscal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, table {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emissão de Nota Fiscal</h1>
+        
+        <form id="formulario">
+            <div class="section">
+                <h2>Data e Hora de Emissão</h2>
+                <label for="dataHoraEmissao">Data e Hora de Emissão:</label>
+                <input type="text" id="dataHoraEmissao" name="dataHoraEmissao" required>
+            </div>
+            
+            <div class "section">
+                <h2>Número da Nota</h2>
+                <label for="numeroNota">Número da Nota:</label>
+                <input type="text" id="numeroNota" name="numeroNota" required>
+            </div>
+            
+            <div class="section">
+                <h2>Dados do Emitente</h2>
+                <label for="emitenteNome">Nome do Emitente:</label>
+                <input type="text" id="emitenteNome" name="emitenteNome" required>
+                
+                <!-- Outros campos do emitente aqui -->
+            </div>
+            
+            <div class="section">
+                <h2>Dados do Destinatário</h2>
+                <label for "destinatarioNome">Nome do Destinatário:</label>
+                <input type="text" id="destinatarioNome" name="destinatarioNome" required>
+                
+                <!-- Outros campos do destinatário aqui -->
+            </div>
+            
+            <form id="formulario">
+                <!-- ... (seções de dados existentes) ... -->
+    
+                <div class="section">
+    <h2>Itens da Nota Fiscal</h2>
+    <table>
+        <tr>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário (R$)</th>
+            <th>Total (R$)</th>
+        </tr>
+        <tr>
+            <td><input type="text" name="descricaoItem1" required></td>
+            <td><input type="number" name="quantidadeItem1" required oninput="updateItemFields(1)"></td>
+            <td><input type="number" name="precoUnitarioItem1" required oninput="updateItemFields(1)"></td>
+            <td><span id="totalItem1">0.00</span></td>
+        </tr>
+        
+        <!-- Adicione mais linhas para mais itens se necessário -->
+    </table>
+    <button type="button" onclick="addNewItemFields()">Adicionar Produto</button>
+</div>
+
+</form>
+</div>
+        <script>
+            let itemCount = 1; // Contador para controle de itens adicionais
+    
+            function updateItemFields(itemNumber) {
+                const quantidade = document.getElementsByName(`quantidadeItem${itemNumber}`)[0].value;
+                const precoUnitario = document.getElementsByName(`precoUnitarioItem${itemNumber}`)[0].value;
+                const total = (quantidade * precoUnitario).toFixed(2);
+                document.getElementById(`totalItem${itemNumber}`).textContent = total;
+            }
+    
+            function addNewItemFields() {
+                itemCount++;
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <td><input type="text" name="descricaoItem${itemCount}" required></td>
+                    <td><input type="number" name="quantidadeItem${itemCount}" required oninput="updateItemFields(${itemCount})"></td>
+                    <td><input type="number" name="precoUnitarioItem${itemCount}" required oninput="updateItemFields(${itemCount})"></td>
+                    <td><span id="totalItem${itemCount}">0.00</span></td>
+                `;
+                document.querySelector("table").appendChild(newRow);
+            }
+    
+            function emitirNotaFiscal() {
+                // Obter os valores inseridos no formulário
+                // ... (resto da função) ...
+            }
+        </script>
+            <div class="section">
+                <h2>Informações Fiscais</h2>
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required>
+                
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required>
+                
+                <!-- Outras informações fiscais aqui -->
+            </div>
+            
+            <button type="button" onclick="emitirNotaFiscal()">Emitir Nota Fiscal</button>
+        </form>
+    </div>
+    
+    <script>
+        function emitirNotaFiscal() {
+            // Obter os valores inseridos no formulário
+            const dataHoraEmissao = document.getElementById("dataHoraEmissao").value;
+            const numeroNota = document.getElementById("numeroNota").value;
+            const emitenteNome = document.getElementById("emitenteNome").value;
+            const destinatarioNome = document.getElementById("destinatarioNome").value;
+            const descricaoItem1 = document.getElementsByName("descricaoItem1")[0].value;
+            const quantidadeItem1 = document.getElementsByName("quantidadeItem1")[0].value;
+            const precoUnitarioItem1 = document.getElementsByName("precoUnitarioItem1")[0].value;
+            const cpf = document.getElementById("cpf").value;
+            const cidade = document.getElementById("cidade").value;
+            
+            // Calcular o total para o item 1
+            const totalItem1 = (quantidadeItem1 * precoUnitarioItem1).toFixed(2);
+            
+            // Redirecionar para a página nota-fiscal-exemplo.html com os parâmetros
+            window.location.href = `nota-fiscal-exemplo.html?dataHoraEmissao=${dataHoraEmissao}&numeroNota=${numeroNota}&emitenteNome=${emitenteNome}&destinatarioNome=${destinatarioNome}&descricaoItem1=${descricaoItem1}&quantidadeItem1=${quantidadeItem1}&precoUnitarioItem1=${precoUnitarioItem1}&totalItem1=${totalItem1}&cpf=${cpf}&cidade=${cidade}`;
+        }
+    </script>
+</body>
+</html>

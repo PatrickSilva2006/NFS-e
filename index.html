@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="page">
+        <form method="POST" class="formLogin">
+            <img src="logo.png" width="200px">
+            <label for="password">Nome</label>
+            <input type="password" placeholder="Digite seu nome" />
+            <label for="email">E-mail</label>
+            <input type="email" placeholder="Digite seu E-mail" autofocus="true" />
+            <label for="password">Senha</label>
+            <input type="password" placeholder="Digite sua senha" />
+            
+            <a href="">Esqueci minha senha</a>
+            <input type="submit" value="Entrar" class="btn" />
+        </form>
+    </div>
+    
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- ... (resto do código HTML) ... -->
+</head>
+<body>
+    <div class="container">
+        <h1>Emissão de Nota Fiscal</h1>
+        
+        <form id="formulario">
+            <!-- ... (seções de dados existentes) ... -->
+
+            <div class="section">
+                <h2>Itens da Nota Fiscal</h2>
+                <table>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                        <th>Preço Unitário (R$)</th>
+                        <th>Total (R$)</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="descricaoItem1" required></td>
+                        <td><input type="number" name="quantidadeItem1" required oninput="updateItemFields(1)"></td>
+                        <td><input type="number" name="precoUnitarioItem1" required oninput="updateItemFields(1)"></td>
+                        <td><span id="totalItem1">0.00</span></td>
+                    </tr>
+                    <!-- Adicione mais linhas para mais itens se necessário -->
+                </table>
+            </div>
+
+            <div id="itemsContainer"></div>
+            
+            <button type="button" onclick="emitirNotaFiscal()">Emitir Nota Fiscal</button>
+        </form>
+    </div>
+    
+    <script>
+        let itemCount = 1; // Contador para controle de itens adicionais
+
+        function updateItemFields(itemNumber) {
+            const quantidade = document.getElementsByName(`quantidadeItem${itemNumber}`)[0].value;
+            const precoUnitario = document.getElementsByName(`precoUnitarioItem${itemNumber}`)[0].value;
+            const total = (quantidade * precoUnitario).toFixed(2);
+            document.getElementById(`totalItem${itemNumber}`).textContent = total;
+        }
+
+        function addNewItemFields() {
+            itemCount++;
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td><input type="text" name="descricaoItem${itemCount}" required></td>
+                <td><input type="number" name="quantidadeItem${itemCount}" required oninput="updateItemFields(${itemCount})"></td>
+                <td><input type="number" name="precoUnitarioItem${itemCount}" required oninput="updateItemFields(${itemCount})"></td>
+                <td><span id="totalItem${itemCount}">0.00</span></td>
+            `;
+            document.querySelector("table").appendChild(newRow);
+        }
+
+        function emitirNotaFiscal() {
+            // Obter os valores inseridos no formulário
+            // ... (resto da função) ...
+        }
+    </script>
+</body>
+</html>

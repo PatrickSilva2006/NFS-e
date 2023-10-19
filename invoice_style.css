@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #000000;
+    background-color: #fff;
+}
+#servi{
+    text-align: center;
+    font-size: px;
+}
+.info{
+    
+    border: 1px solid #000000;
+    margin-bottom: 50px;
+    padding: 10px;
+    height: 200px;
+    margin: auto;
+}
+
+#topo {
+    border: 1px solid #000000;
+    margin-bottom: 50px;
+    padding: 10px;
+    display: flex; /* Para alinhar a imagem e as etiquetas horizontalmente */
+    align-items: center; /* Para alinhar verticalmente */
+    height: 100px;
+    margin: auto;
+}
+#topo img {
+    width: 90px;
+    margin-right: 100px; /* Espaço entre a imagem e as etiquetas */
+}
+
+.labels {
+    display: flex;
+    flex-direction: column; /* Para as etiquetas ficarem uma abaixo da outra */
+    align-items: center;
+}
+
+.labels label {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Espaço entre as etiquetas */
+}
+
+.info {
+    margin-bottom: 20px;
+}
+
+.info label {
+    font-weight: bold;
+}
+
+.info p {
+    margin: 5px 0;
+}
+
+.items {
+    margin-top: 20px;
+}
+
+.items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items th, .items td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.total {
+    margin-top: 20px;
+    text-align: right;
+}
